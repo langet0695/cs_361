@@ -1,38 +1,62 @@
-.App {
+.container_width {
+  width: 100%;
+}
+
+.toolbar {
+  position: relative;
+  float: right;
+}
+
+.center_container{
+  width: 60%;
+  height: 100vh;
+  background-color: #61dafb;
+  position: relative;
+  float: left;
+}
+
+.information_container{
+  width: 20%;
+  height: 100vh;
+  background-color: aquamarine;
+  position: relative;
+  float: left;
+}
+
+.information_center{
+  width: 100%;
+  height: 35%;
+  position: relative;
+  float: left;
+  background-color: rgb(92, 142, 185);
+}
+
+.center{
+  margin: auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.intro{
+  margin-top: 10%;
+  font-size: 200%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.center_inputs{
+  width: 60%;
+  height: 35vh;
+  background-color: #61fb75;
+  position: absolute;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  left: 20%;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipe_box{
+  width: 33%;
+  height: 30vh;
+  position: relative;
+  float: left;
+  border: #000000;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #fb61ee;
 }

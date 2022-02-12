@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react';
+// import HomePage from './pages/MiniPage';
+import Input_items from './data/input_items.js';
+import User_inputs from './data/user_inputs.js'
+import Homepage from './pages/Homepage';
 
-function App() {
+function App() {  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <body class="App"  >
+            <Router>
+                <Route path="/" exact>
+                  {/* <HomePage ValidMinis={ValidMinis}/> */}
+                  <Homepage Input_items={Input_items} User_inputs={User_inputs}/>
+                </Route>
+            </Router>
+      </body>
   );
 }
 
