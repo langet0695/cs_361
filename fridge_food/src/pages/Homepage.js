@@ -5,11 +5,34 @@ import DropDown from '../components/dropdowns';
 import InputList from '../components/input_lists';
 import RecipeCard from '../components/recipe_card';
 
+
 //
 //THIS PAGE IS FOR TESTING ONLY
 //
 
-function Homepage({ Input_items, User_inputs }) {
+function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
+
+    const [userInput, setInput] = useState([])
+    const [textInput, setTextInput] = useState('')
+    const [suggestedRecipes, setSuggestedRecipes] = useState(['TBD', 'TBD', 'TBD'])
+    
+    function updateTextInput(input){
+        setTextInput(input)
+    }
+
+    function addInput(input){
+        const newInput = userInput.slice()
+        newInput.push(input)
+        setInput(newInput)
+    }
+
+    function calcRecipes(){
+        const tmp_recipes = suggestedRecipes.slice()
+        tmp_recipes.splice(0, 1, 'hamburger') 
+        tmp_recipes.splice(1, 1, 'bread') 
+        tmp_recipes.splice(2, 1, 'None') 
+        setSuggestedRecipes(tmp_recipes)
+    }
 
     return (
         <>
@@ -27,10 +50,10 @@ function Homepage({ Input_items, User_inputs }) {
                 <div class="information_center">
                     <div class="center_inputs">
                         <div>
-                            <form>
+                            <form >
                                 <label for="text_input">Tell us, what is in your fridge...</label>
-                                <input type="text" id="text_input" name="text_input"></input>
-                                <input type="submit"></input><br></br>
+                                <input type="text" id="text_input" name="text_input" onChange={e => updateTextInput(e.target.value)}></input>
+                                <button type="button" onClick={e => addInput(textInput)}>Add Input</button><br></br>
                             </form>
                             <form>
                                 <label for="drop_downs">or select from the following:</label><br></br>
@@ -44,30 +67,30 @@ function Homepage({ Input_items, User_inputs }) {
                                         </tr>
                                         <tr>
                                             <th>
-                                                <DropDown input={Input_items['pantry']}></DropDown>
+                                                <DropDown input={Input_items['pantry']} addInput={addInput}></DropDown>
                                             </th>
                                             <th>
-                                                <DropDown input={Input_items['spices']}></DropDown>
+                                                <DropDown input={Input_items['spices']} addInput={addInput}></DropDown>
                                             </th>
                                             <th>
-                                                <DropDown input={Input_items['fridge']}></DropDown>
+                                                <DropDown input={Input_items['fridge']} addInput={addInput}></DropDown>
                                             </th>
                                             <th>
-                                                <DropDown input={Input_items['utensils']}></DropDown>
+                                                <DropDown input={Input_items['utensils']} addInput={addInput}></DropDown>
                                             </th>
                                         </tr>
                                     </table>
                                     <br></br>
-                                    <input type="submit"></input>
+                                    <button type="button" onClick={e => calcRecipes()}>Calculate Recipes</button>
                                 </center>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <RecipeCard input="TMP"></RecipeCard>
-                    <RecipeCard input="TMP"></RecipeCard>
-                    <RecipeCard input="TMP"></RecipeCard>
+                    <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard>
+                    <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard>
+                    <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard>
                 </div>
             </div>
             <div class="information_container">
@@ -80,7 +103,7 @@ function Homepage({ Input_items, User_inputs }) {
                 </table>
                 <p>
                     Items Available
-                    <InputList input={User_inputs}></InputList>
+                    <InputList input={userInput}></InputList>
                 </p>
             </div>
         </>

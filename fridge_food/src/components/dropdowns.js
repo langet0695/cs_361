@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function DropDown({ input }){
+function DropDown({ input, addInput }){
     return (
         <>  
-            <select size="5" multiple>
+            <select size="5" multiple onChange={e => addInput(e.target.value)}>
                 {
-                    input.map((item, key) => <option value={key}>{item}</option>)
+                    input.map((item, key) => <option value={item} >{item}</option>)
                 }
             </select>
         </>
