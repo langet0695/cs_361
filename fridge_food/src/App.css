@@ -52,11 +52,15 @@
 
 .recipe_box{
   width: 33%;
-  height: 30vh;
+  height: 40vh;
   position: relative;
   float: left;
   border: #000000;
   border-width: 1px;
   border-style: solid;
   background-color: #fb61ee;
+}
+
+#intro{
+  height: 25%;
 }

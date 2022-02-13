@@ -17,7 +17,7 @@ function Homepage({ Input_items, User_inputs }) {
                 Column for recipe list
             </div>
             <div class="center_container">
-                <div class="information_center">
+                <div class="information_center" id="intro">
                     <p class="center">
                         <p class="intro">
                             Welcome to the Fridge to Recipe Machine!
