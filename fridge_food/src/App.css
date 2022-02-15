@@ -64,3 +64,8 @@
 #intro{
   height: 25%;
 }
+
+.indent{
+  padding-left: 5%;
+  padding-right: 5%;
+}

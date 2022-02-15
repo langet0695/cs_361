@@ -4,7 +4,7 @@ import { FaRandom, FaSearch, FaShareAlt, FaRegQuestionCircle } from "react-icons
 import DropDown from '../components/dropdowns';
 import InputList from '../components/input_lists';
 import RecipeCard from '../components/recipe_card';
-
+import HelpInfo from '../components/help_info';
 
 //
 //THIS PAGE IS FOR TESTING ONLY
@@ -14,6 +14,7 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
 
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
+    const [showHelp, setHelp] = useState('False')
     const [suggestedRecipes, setSuggestedRecipes] = useState(['TBD', 'TBD', 'TBD'])
     
     function updateTextInput(input){
@@ -24,6 +25,10 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         const newInput = userInput.slice()
         newInput.push(input)
         setInput(newInput)
+    }
+
+    function updateHelp(){
+        (showHelp === "False") ? setHelp("True") : setHelp("False")
     }
 
     function calcRecipes(){
@@ -96,14 +101,13 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
             <div class="information_container">
                 <table class="toolbar">
                     <tr>
-                        <th><FaRegQuestionCircle/></th>
+                        <th><FaRegQuestionCircle onClick={updateHelp}/></th>
                         <th><FaSearch/></th>
                         <th><FaShareAlt/></th>
                     </tr>
                 </table>
                 <p>
-                    Items Available
-                    <InputList input={userInput}></InputList>
+                    {( (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputList input={userInput}></InputList>)}
                 </p>
             </div>
         </>
