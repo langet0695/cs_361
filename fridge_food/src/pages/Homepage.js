@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRandom, FaSearch, FaShareAlt, FaRegQuestionCircle } from "react-icons/fa";
 import DropDown from '../components/dropdowns';
@@ -11,12 +11,19 @@ import HelpInfo from '../components/help_info';
 //
 
 function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
-
+    const [Recipes, setRecipes] = useState([]);
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
     const [suggestedRecipes, setSuggestedRecipes] = useState(['TBD', 'TBD', 'TBD'])
     
+    const loadData = async () => {
+        // const response = await fetch("https://fathomless-taiga-44243.herokuapp.com/?ingredients='milk','cheese'");
+        const response = await fetch(`https://fathomless-taiga-44243.herokuapp.com/?ingredients=${userInput}`);
+        const data = await response.json();
+        console.log(data['recipes'][0])
+        setRecipes(data);
+    }
     function updateTextInput(input){
         setTextInput(input)
     }
@@ -37,7 +44,12 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         tmp_recipes.splice(1, 1, 'bread') 
         tmp_recipes.splice(2, 1, 'None') 
         setSuggestedRecipes(tmp_recipes)
+        loadData();
     }
+
+    useEffect(() => {
+        loadData();
+    }, [] );
 
     return (
         <>
@@ -93,6 +105,7 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                     </div>
                 </div>
                 <div>
+                    {/* {Recipes['recipes'][0]['name']} */}
                     <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard>
                     <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard>
                     <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard>
