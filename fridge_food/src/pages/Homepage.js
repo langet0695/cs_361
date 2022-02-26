@@ -5,13 +5,14 @@ import DropDown from '../components/dropdowns';
 import InputList from '../components/input_lists';
 import RecipeCard from '../components/recipe_card';
 import HelpInfo from '../components/help_info';
+import RecipeCardTest from '../components/r_c_test';
 
 //
 //THIS PAGE IS FOR TESTING ONLY
 //
 
 function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
-    const [Recipes, setRecipes] = useState([]);
+    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
@@ -47,9 +48,9 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         loadData();
     }
 
-    useEffect(() => {
-        loadData();
-    }, [] );
+    // useEffect(() => {
+    //     loadData();
+    // }, [] );
 
     return (
         <>
@@ -105,10 +106,10 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                     </div>
                 </div>
                 <div>
-                    {/* {Recipes['recipes'][0]['name']} */}
-                    <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard>
-                    <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard>
-                    <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard>
+                    <RecipeCardTest input={Recipes['recipes'][0]}></RecipeCardTest>
+                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard> */}
+                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard> */}
+                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard> */}
                 </div>
             </div>
             <div class="information_container">
