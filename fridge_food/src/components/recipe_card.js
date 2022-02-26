@@ -5,9 +5,12 @@ function ReipeCard({ input }){
     return (
         <>  
             <div class="recipe_box">
-                Ingredients{input['ingredients'].reduce((a, b) => a + ', ' + b, '')}
-                {/* <p>Instructions: {input['instructions'].map((item, key) => <p>{item}</p>)}</p> */}
-                <ol>Instructions: {input['instructions'].map((item, key) => <li>{item}</li>)}</ol>
+                Recipe: {input['name']}
+                <br></br>
+                Image
+                <br></br>
+                <a href={input['link']}>Learn More</a>
+                <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol>
             </div>
         </>
     );

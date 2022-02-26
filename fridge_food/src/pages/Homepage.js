@@ -12,7 +12,7 @@ import RecipeCardTest from '../components/r_c_test';
 //
 
 function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
-    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
+    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_2', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_3', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
@@ -106,7 +106,9 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                     </div>
                 </div>
                 <div>
-                    <RecipeCardTest input={Recipes['recipes'][0]}></RecipeCardTest>
+                    <RecipeCard input={Recipes['recipes'][0]}></RecipeCard>
+                    <RecipeCard input={Recipes['recipes'][1]}></RecipeCard>
+                    <RecipeCard input={Recipes['recipes'][2]}></RecipeCard>
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard> */}
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard> */}
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard> */}
