@@ -9,9 +9,9 @@ function ReipeCard({ input, updateCard, value }){
                 <br></br>
                 Image
                 <br></br>
-                <a href={input['link']}>Learn More</a>
-                <button type="button" onClick={e => updateCard(value)}>Show Details</button>
-                <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol>
+                {/* <a href={input['link']}>Learn More</a> */}
+                <button type="button" onClick={e => updateCard(value)}>Learn More</button>
+                {/* <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol> */}
             </div>
         </>
     );

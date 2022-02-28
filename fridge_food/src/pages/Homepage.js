@@ -46,7 +46,10 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     function updateCard(val){
         console.log(val)
         if(showCard != "Input"){
-            setCard("Input")
+            if(showCard === 1 & val != 1){setCard(val)}
+            else if(showCard === 2 & val != 2){setCard(val)}
+            else if(showCard === 3 & val != 3){setCard(val)}
+            else{setCard("Input")}
         }
         else {
             setCard(val)
@@ -73,7 +76,7 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
             </div>
             <div class="center_container">
                 {/* { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule>} */}
-                { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> : <RecipeDetails input={Recipes['recipes'][showCard]}></RecipeDetails> }
+                { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> : <RecipeDetails input={Recipes['recipes'][showCard]} updateCard={updateCard} value={showCard}></RecipeDetails> }
                 {/* <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> */}
                 {/* <div class="information_center" id="intro">
                     <p class="center">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function RecipeDetails({ input }){
+function RecipeDetails({ input, updateCard, value }){
 
     return (
         <>  
@@ -11,6 +11,8 @@ function RecipeDetails({ input }){
                 <br></br>
                 <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol>
                 <b><a href={input['link']}>Recipe Instructions</a></b>
+                <br></br>
+                <button type="button" onClick={e => updateCard(value)}>Return to Input</button>
             </div>
         </>
     );
