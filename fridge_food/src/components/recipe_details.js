@@ -5,9 +5,8 @@ function RecipeDetails({ input, updateCard, value }){
     return (
         <>  
             <div class="recipe_center">
-                Recipe: {input['name']}
+                <b>Recipe: {input['name']}</b>
                 <br></br>
-                Image
                 <br></br>
                 <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol>
                 <b><a href={input['link']}>Recipe Instructions</a></b>

@@ -23,7 +23,6 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
     const [showCard, setCard] = useState('Input')
-    const [suggestedRecipes, setSuggestedRecipes] = useState(['TBD', 'TBD', 'TBD'])
     
     const loadData = async () => {
         // const response = await fetch("https://fathomless-taiga-44243.herokuapp.com/?ingredients='milk','cheese'");
@@ -54,9 +53,9 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     function updateCard(val){
         console.log(val)
         if(showCard != "Input"){
-            if(showCard === 1 & val != 1){setCard(val)}
+            if(showCard === 0 & val != 0){setCard(val)}
+            else if(showCard === 1 & val != 1){setCard(val)}
             else if(showCard === 2 & val != 2){setCard(val)}
-            else if(showCard === 3 & val != 3){setCard(val)}
             else{setCard("Input")}
         }
         else {
@@ -65,11 +64,6 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     }
 
     function calcRecipes() {
-        const tmp_recipes = suggestedRecipes.slice()
-        tmp_recipes.splice(0, 1, 'hamburger') 
-        tmp_recipes.splice(1, 1, 'bread') 
-        tmp_recipes.splice(2, 1, 'None') 
-        setSuggestedRecipes(tmp_recipes)
         loadData();
     }
 
