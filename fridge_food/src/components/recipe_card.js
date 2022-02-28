@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ReipeCard({ input, updateCard, value }){
+function ReipeCard({ input, updateCard, value, img }){
 
     return (
         <>  
@@ -8,6 +8,8 @@ function ReipeCard({ input, updateCard, value }){
                 Recipe: {input['name']}
                 <br></br>
                 Image
+                <br></br>
+                <img src={img} width="75" height="60"></img>
                 <br></br>
                 {/* <a href={input['link']}>Learn More</a> */}
                 <button type="button" onClick={e => updateCard(value)}>Learn More</button>

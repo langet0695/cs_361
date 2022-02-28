@@ -16,6 +16,9 @@ import RecipeDetails from '../components/recipe_details';
 
 function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_2', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_3', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
+    const [Image_1, setImageOne] = useState('tmp')
+    const [Image_2, setImageTwo] = useState('tmp')
+    const [Image_3, setImageThree] = useState('tmp')
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
@@ -26,9 +29,14 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         // const response = await fetch("https://fathomless-taiga-44243.herokuapp.com/?ingredients='milk','cheese'");
         const response = await fetch(`https://fathomless-taiga-44243.herokuapp.com/?ingredients=${userInput}`);
         const data = await response.json();
-        console.log(data['recipes'][0])
+        console.log(data['recipes'][0]['name'])
+        const img_1 = await fetch(`https://cs361-image-service.herokuapp.com/photo/apple`);
+        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][0]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageOne(text); })
+        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][1]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageTwo(text); })
+        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][2]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageThree(text); })
         setRecipes(data);
     }
+
     function updateTextInput(input){
         setTextInput(input)
     }
@@ -56,7 +64,7 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         }
     }
 
-    function calcRecipes(){
+    function calcRecipes() {
         const tmp_recipes = suggestedRecipes.slice()
         tmp_recipes.splice(0, 1, 'hamburger') 
         tmp_recipes.splice(1, 1, 'bread') 
@@ -72,74 +80,19 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     return (
         <>
             <div class="information_container">
-                Column for recipe list
             </div>
             <div class="center_container">
-                {/* { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule>} */}
                 { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> : <RecipeDetails input={Recipes['recipes'][showCard]} updateCard={updateCard} value={showCard}></RecipeDetails> }
-                {/* <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> */}
-                {/* <div class="information_center" id="intro">
-                    <p class="center">
-                        <p class="intro">
-                            Welcome to the Fridge to Recipe Machine!
-                        </p>
-                    </p>
-                </div>
-                <div class="information_center">
-                    <div class="center_inputs">
-                        <div>
-                            <form >
-                                <label for="text_input">Tell us, what is in your fridge...</label>
-                                <input type="text" id="text_input" name="text_input" onChange={e => updateTextInput(e.target.value)}></input>
-                                <button type="button" onClick={e => addInput(textInput)}>Add Input</button><br></br>
-                            </form>
-                            <form>
-                                <label for="drop_downs">or select from the following:</label><br></br>
-                                <center>
-                                    <table>
-                                        <tr>
-                                            <th><label for="pantry">Pantry</label></th>
-                                            <th><label for="spices">Spices</label></th>
-                                            <th><label for="fridge">Fridge</label></th>
-                                            <th><label for="utensils">Utensils</label></th>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                <DropDown input={Input_items['pantry']} addInput={addInput}></DropDown>
-                                            </th>
-                                            <th>
-                                                <DropDown input={Input_items['spices']} addInput={addInput}></DropDown>
-                                            </th>
-                                            <th>
-                                                <DropDown input={Input_items['fridge']} addInput={addInput}></DropDown>
-                                            </th>
-                                            <th>
-                                                <DropDown input={Input_items['utensils']} addInput={addInput}></DropDown>
-                                            </th>
-                                        </tr>
-                                    </table>
-                                    <br></br>
-                                    <button type="button" onClick={e => calcRecipes()}>Calculate Recipes</button>
-                                </center>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
                 <div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][0]} updateCard={updateCard} value={0}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][0]} updateCard={updateCard} value={0} img={Image_1}></RecipeCard>}
                     </div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][1]} updateCard={updateCard} value={1}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][1]} updateCard={updateCard} value={1} img={Image_2}></RecipeCard>}
                     </div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][2]} updateCard={updateCard} value={2}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][2]} updateCard={updateCard} value={2} img={Image_3}></RecipeCard>}
                     </div>
-                    {/* <RecipeCard input={Recipes['recipes'][1]}></RecipeCard>
-                    <RecipeCard input={Recipes['recipes'][2]}></RecipeCard> */}
-                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard> */}
-                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard> */}
-                    {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard> */}
                 </div>
             </div>
             <div class="information_container">
