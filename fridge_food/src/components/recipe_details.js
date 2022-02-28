@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 
-function ReipeCard({ input, updateCard, value }){
+function RecipeDetails({ input }){
 
     return (
         <>  
-            <div class="recipe_box">
+            <div class="recipe_center">
                 Recipe: {input['name']}
                 <br></br>
                 Image
                 <br></br>
-                <a href={input['link']}>Learn More</a>
-                <button type="button" onClick={e => updateCard(value)}>Show Details</button>
                 <ol>Ingredients: {input['ingredientLines'].map((item, key) => <li>{item}</li>)}</ol>
+                <b><a href={input['link']}>Recipe Instructions</a></b>
             </div>
         </>
     );
 }
 
-export default ReipeCard
+export default RecipeDetails

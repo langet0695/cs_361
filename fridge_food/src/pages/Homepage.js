@@ -6,6 +6,9 @@ import InputList from '../components/input_lists';
 import RecipeCard from '../components/recipe_card';
 import HelpInfo from '../components/help_info';
 import RecipeCardTest from '../components/r_c_test';
+import InputModule from '../components/input_module';
+import ItemInput from '../data/input_items.js';
+import RecipeDetails from '../components/recipe_details';
 
 //
 //THIS PAGE IS FOR TESTING ONLY
@@ -16,6 +19,7 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
     const [userInput, setInput] = useState([])
     const [textInput, setTextInput] = useState('')
     const [showHelp, setHelp] = useState('False')
+    const [showCard, setCard] = useState('Input')
     const [suggestedRecipes, setSuggestedRecipes] = useState(['TBD', 'TBD', 'TBD'])
     
     const loadData = async () => {
@@ -39,6 +43,16 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
         (showHelp === "False") ? setHelp("True") : setHelp("False")
     }
 
+    function updateCard(val){
+        console.log(val)
+        if(showCard != "Input"){
+            setCard("Input")
+        }
+        else {
+            setCard(val)
+        }
+    }
+
     function calcRecipes(){
         const tmp_recipes = suggestedRecipes.slice()
         tmp_recipes.splice(0, 1, 'hamburger') 
@@ -58,7 +72,10 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                 Column for recipe list
             </div>
             <div class="center_container">
-                <div class="information_center" id="intro">
+                {/* { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule>} */}
+                { (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> : <RecipeDetails input={Recipes['recipes'][showCard]}></RecipeDetails> }
+                {/* <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> */}
+                {/* <div class="information_center" id="intro">
                     <p class="center">
                         <p class="intro">
                             Welcome to the Fridge to Recipe Machine!
@@ -104,11 +121,19 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div>
-                    <RecipeCard input={Recipes['recipes'][0]}></RecipeCard>
-                    <RecipeCard input={Recipes['recipes'][1]}></RecipeCard>
-                    <RecipeCard input={Recipes['recipes'][2]}></RecipeCard>
+                    <div>
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][0]} updateCard={updateCard} value={0}></RecipeCard>}
+                    </div>
+                    <div>
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][1]} updateCard={updateCard} value={1}></RecipeCard>}
+                    </div>
+                    <div>
+                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][2]} updateCard={updateCard} value={2}></RecipeCard>}
+                    </div>
+                    {/* <RecipeCard input={Recipes['recipes'][1]}></RecipeCard>
+                    <RecipeCard input={Recipes['recipes'][2]}></RecipeCard> */}
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[0]]}></RecipeCard> */}
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[1]]}></RecipeCard> */}
                     {/* <RecipeCard input={PossibleRecipes[suggestedRecipes[2]]}></RecipeCard> */}
