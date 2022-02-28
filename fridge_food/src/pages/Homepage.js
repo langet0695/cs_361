@@ -99,12 +99,13 @@ function Homepage({ Input_items, User_inputs, PossibleRecipes }) {
                 <table class="toolbar">
                     <tr>
                         <th><FaRegQuestionCircle onClick={updateHelp}/></th>
-                        <th><FaSearch/></th>
-                        <th><FaShareAlt/></th>
+                        {/* <th><FaSearch/></th>
+                        <th><FaShareAlt/></th> */}
                     </tr>
                 </table>
                 <p>
-                    {( (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputList input={userInput}></InputList>)}
+                    <InputList input={userInput}></InputList>
+                    {/* {( (showHelp === "True") ? <HelpInfo showHelp={showHelp} updateHelp={updateHelp} ></HelpInfo> : <InputList input={userInput}></InputList>)} */}
                 </p>
             </div>
         </>
