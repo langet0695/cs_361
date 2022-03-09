@@ -19,12 +19,19 @@ function Homepage() {
     const [showHelp, setHelp] = useState('False')
     const [showCard, setCard] = useState('Input')
     
+    const loadImageUrl = async (call, callback) => {
+        let response = await fetch(call);
+        let url = await response.text();
+        return callback(url);
+    }
+
     const loadData = async () => {
         const response = await fetch(`https://fathomless-taiga-44243.herokuapp.com/?ingredients=${userInput}`);
         const data = await response.json();
-        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][0]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageOne(text); })
-        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][1]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageTwo(text); })
-        await fetch(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][2]['name']}`).then((resp)=>{ return resp.text() }).then((text)=>{setImageThree(text); })
+        let prom1 =loadImageUrl(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][0]['name']}`, setImageOne);
+        let prom2 =loadImageUrl(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][1]['name']}`, setImageTwo);
+        let prom3 =loadImageUrl(`https://cs361-image-service.herokuapp.com/photo/${data['recipes'][2]['name']}`, setImageThree);
+        await Promise.all([prom1, prom2, prom3]);
         setRecipes(data);
     }
 
@@ -63,16 +70,21 @@ function Homepage() {
             <div class="information_container">
             </div>
             <div class="center_container">
-                { (showHelp === "True") ? <HelpInfo updateHelp={updateHelp} ></HelpInfo> : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> : <RecipeDetails input={Recipes['recipes'][showCard]} updateCard={updateCard} value={showCard}></RecipeDetails> }
+                { (showHelp === "True") ? <HelpInfo updateHelp={updateHelp} ></HelpInfo> 
+                                        : (showCard === "Input") ? <InputModule Input_items={ItemInput} addInput={addInput} updateTextInput={updateTextInput} calcRecipes={calcRecipes} textInput={textInput}></InputModule> 
+                                                                 : <RecipeDetails input={Recipes['recipes'][showCard]} updateCard={updateCard} value={showCard}></RecipeDetails> }
                 <div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][0]} updateCard={updateCard} value={0} img={Image_1}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> 
+                                                : <RecipeCard input={Recipes['recipes'][0]} updateCard={updateCard} value={0} img={Image_1}></RecipeCard>}
                     </div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][1]} updateCard={updateCard} value={1} img={Image_2}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> 
+                                                : <RecipeCard input={Recipes['recipes'][1]} updateCard={updateCard} value={1} img={Image_2}></RecipeCard>}
                     </div>
                     <div>
-                        { (showHelp === "True") ? <div></div> : <RecipeCard input={Recipes['recipes'][2]} updateCard={updateCard} value={2} img={Image_3}></RecipeCard>}
+                        { (showHelp === "True") ? <div></div> 
+                                                : <RecipeCard input={Recipes['recipes'][2]} updateCard={updateCard} value={2} img={Image_3}></RecipeCard>}
                     </div>
                 </div>
             </div>
