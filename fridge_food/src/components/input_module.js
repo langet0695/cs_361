@@ -1,7 +1,5 @@
 import DropDown from '../components/dropdowns';
-import RecipeCard from '../components/recipe_card';
 
-// import Input_items from './data/input_items.js';
 function input_module( {Input_items, addInput, updateTextInput, calcRecipes, textInput} ){
 
     return(

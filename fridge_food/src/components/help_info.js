@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRegWindowClose } from "react-icons/fa";
 
-function Help( {showHelp, updateHelp} ){
+function Help( { updateHelp } ){
 
     return (
         <>  

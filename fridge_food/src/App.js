@@ -1,12 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React from 'react';
-// import HomePage from './pages/MiniPage';
-import Input_items from './data/input_items.js';
-import User_inputs from './data/user_inputs.js'
-import PossibleRecipes from './data/possible_recipes';
 import Homepage from './pages/Homepage';
-import Recipepage from './pages/Recipepage';
 
 function App() {  
 
@@ -15,7 +10,7 @@ function App() {
       <body class="App"  >
             <Router>
                 <Route path="/" exact>
-                  <Homepage Input_items={Input_items} User_inputs={User_inputs} PossibleRecipes={PossibleRecipes}/>
+                  <Homepage/>
                 </Route>
             </Router>
       </body>
