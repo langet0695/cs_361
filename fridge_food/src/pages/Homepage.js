@@ -8,7 +8,9 @@ import ItemInput from '../data/input_items.js';
 import RecipeDetails from '../components/recipe_details';
 
 function Homepage() {
-    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_2', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, {'name':'TMP_3', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
+    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
+                                                       {'name':'TMP_2', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
+                                                       {'name':'TMP_3', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
     const [Image_1, setImageOne] = useState('tmp')
     const [Image_2, setImageTwo] = useState('tmp')
     const [Image_3, setImageThree] = useState('tmp')
