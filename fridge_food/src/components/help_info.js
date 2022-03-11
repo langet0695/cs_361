@@ -2,7 +2,7 @@ import React from 'react';
 import { FaRegWindowClose } from "react-icons/fa";
 
 function Help( { updateHelp } ){
-
+    // This js file contains the component that is used to display and close the help information users are presented with.
     return (
         <>  
             <div >
@@ -25,7 +25,7 @@ function Help( { updateHelp } ){
                         After "Calculate Recipe" is selected the machine will query a search service and return 3 recipes you can cook with what is available in your kitchen! If you don't have a necessary ingreident you cannot cook the recipe.
                     </p>
                     <p>
-                        Placeholder
+                        If a user is interested in obtaining additional infromation on the recipes that were found the "Learn More" button can be selected for a full ingredient list and link to a recipe.
                     </p>
                 </div>
             </div> 

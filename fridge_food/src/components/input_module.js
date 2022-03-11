@@ -1,7 +1,7 @@
 import DropDown from '../components/dropdowns';
 
 function input_module( {Input_items, addInput, updateTextInput, calcRecipes, textInput} ){
-
+    // This component contains the code to build and generate the ui for a user to input ingredients through a text box or a dropdown form.
     return(
         <>
             <div class="information_center" id="intro">

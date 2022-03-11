@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ReipeCard({ input, updateCard, value, img }){
-
+    // This component builds the content that is populated into the 3 recipe cards at the bottom of the browser page of the user.
     return (
         <>  
             <div class="recipe_box">
