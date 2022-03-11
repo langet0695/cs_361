@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function RecipeDetails({ input, updateCard, value }){
     // This component contains the jsx / html to dynamically build a visual containing the ingredients and a link to the recipe provided to the user.
