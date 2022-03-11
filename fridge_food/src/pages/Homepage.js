@@ -9,9 +9,9 @@ import RecipeDetails from '../components/recipe_details';
 
 function Homepage() {
     // This Homepage component is used to generate the ui and interaction mechanisms of the main web landing page users will be directed to.
-    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP_1', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
-                                                       {'name':'TMP_2', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
-                                                       {'name':'TMP_3', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
+    const [Recipes, setRecipes] = useState({'recipes':[{'name':'TMP', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
+                                                       {'name':'TMP', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}, 
+                                                       {'name':'TMP', 'ingredientLines':['TMP_Ingredient'], 'link': 'google.com'}]});
     const [Image_1, setImageOne] = useState('tmp')
     const [Image_2, setImageTwo] = useState('tmp')
     const [Image_3, setImageThree] = useState('tmp')
